@@ -8,9 +8,9 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_development
+  database: blog_app_development
 
 
 test:
   <<: *default
-  database: myapp_test
+  database: blog_app_test
