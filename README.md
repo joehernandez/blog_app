@@ -12,11 +12,15 @@ After pulling the code from Github, there are only a few commands necessary to g
 * After the databases are successfully created, the site should be available
   * <http://localhost:5000>
 
+## `docker-compose build` is needed anytime the following is updated
+* `Dockerfile`
+* `Gemfile`
+  * After a `Gemfile` update, also need `docker-compose run --rm web bundle update` before `docker-compose up`
 
 ## Running RSpec tests
 First, start up the application
-`docker-compose up -d`
-Then start a bash session in the web container
+`docker-compose up`
+Then, in another terminal, start a bash session in the web container
 `docker-compose run web bash`
 Finally, inside the bash session you can execute the targeted test(s)
 `rspec spec/path/to/target_file_spec.rb`
@@ -27,3 +31,10 @@ Finally, inside the bash session you can execute the targeted test(s)
 * Generate a new controller 
   * `rails g controller ControllerName action1 action2 ...`
     * e.g. `rails g controller Articles index`
+* Generate a new serializer
+  * First install the jsonapi-serializer gem in `Gemfile`
+    * `gem 'jsonapi-serializer'`
+  * Then in a web container bash shell
+    * `bundle`
+    * `rails g serializer [serializer_name] [attribute-1 attribute-2 ...]`
+    * e.g. `rails g serializer article title content slug`
