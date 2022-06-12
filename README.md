@@ -38,3 +38,19 @@ Finally, inside the bash session you can execute the targeted test(s)
     * `bundle`
     * `rails g serializer [serializer_name] [attribute-1 attribute-2 ...]`
     * e.g. `rails g serializer article title content slug`
+
+## PGAdmin
+After starting all services with `docker-compose up`, open up the [PGAdmin Web UI](http://localhost:15432)
+* For the UI login, use the `environment` values found in the `pgadmin` service in `docker-compose.yml`
+* Once logged in to the UI, right-click __Server__ and select __Create__ > __Server__
+  * Under __General__, provide a __Name__ (e.g. docker-postgres)
+  * Under __Connection__
+    * __Host name/address__: pgadmin container name from `docker-compose.yml`
+    * __Port__: 5432
+    * __Maintenance database__: from `config/database.yml` (default& > username)
+    * __Username__: from `config/database.yml` (default& > username)
+    * __Password__: from `config/database.yml` (default& > password)
+  * Click on __Save password__ option
+* Once connected to the local server, tables can be viewed under:
+  * __Databases__ > __blog_app_development__ > __Schemas__ > __Public__ > __Tables__
+* To perform CRUD operations against a table, right-click the table and select select an option under __Scripts__
